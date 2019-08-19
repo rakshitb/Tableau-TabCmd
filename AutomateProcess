@@ -1,0 +1,21 @@
+## Open a text file
+## Paste the following steps without the lines starting with Pound (##) sign
+## Input your details wherever required
+## Save the File with .bat extension
+## Run the created .bat File
+
+
+## Navigate to Tableau Command Line Utility Folder
+cd C:\Program Files\Tableau\Tableau Server\2019.2\extras\Command Line Utility
+
+## Enter your Servername and Credentails to login
+tabcmd login -s https://online.tableau.com -t ServerName -u UserName -p PassWord
+
+## To download the entire workbook use the below command
+tabcmd export "DashBoard Name/ViewName" --pagelayout landscape --fullpdf -f "Folder_Location\output1.pdf"
+
+## To download the dashboard views for each and every parameter applied, use below command
+FOR /F "tokens=1" %%i IN (FileLocation\parameter.txt) DO tabcmd get "views/DashboardName/ViewName?ParameterName=%%i" -f "File_location/%%i.pdf"     ##Focus on the %% sign, if used single %sign it will not work 
+
+   
+tabcmd logout
