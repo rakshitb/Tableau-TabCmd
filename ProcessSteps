@@ -1,0 +1,23 @@
+#### TABCMD DOCUMENTATION ####
+
+Pre-requisties
+  Tableau Online Account/Server
+  Tableau command utility prompt: Can be downloaded separately from tableau's website
+
+1) Navigate to Folder in C:/Drive where the TabCmd Utility is Saved and open Windows Cmd 
+   cd C:\Program Files\Tableau\Tableau Server\10.1\extras\Command Line Utility
+
+
+2) Enter the following command with your server name, username and password
+   tabcmd login -s https://online.tableau.com -t ServerName -u UserName -p Password			
+
+3) To download the entire workbook without paramters/filters use the following command
+   tabcmd export "DashBoard Name/ViewName" --pagelayout landscape --fullpdf -f "folder in your local directory"  ### Open a view (anyview) in the dashboard and use its name. 
+
+4) To download the dashboard with paramters use the following command 			
+   FOR /F "tokens=1" %i IN (C:\path to txt file\paramters.txt) DO tabcmd get "views/filename/dashboard?parametername=%i" -f "Location/%i.pdf" 		### You can use a txt/csv file to store your parameters. Go to the location to check whether the views were donwloaded
+
+		
+Note: If your parameters have space or comma in them, then use the following encodings, if still not work then rename parameters
+South Korea: South%20Korea
+Australia, New Zealand: Australia%5C%2C%20New%20Zealand
